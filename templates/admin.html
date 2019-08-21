@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Administração</title>
+</head>
+
+<body>
+    <form method="POST" action="/admin">
+        {{ formulario3.csrf_token }}
+        <div class="content-section">
+            <h1>CADASTRO DE USUARIOS:</h1>
+            <h3><a href="/logoutadmin">Logout</a></h3>
+            {{ formulario3.nomeusuario }}
+            <br>
+            {{ formulario3.senhausuario }}
+            <br>
+            {{ formulario3.enviarusuario }}
+
+        </div>
+    </form>
+    <br>
+    <br>
+    {% for ini in range(ini, fim): %}
+    <form method="POST" action="/deleteusuario">
+        {{ formulario4.csrf_token }}
+        <table border="1">
+            <tr>
+                <td>#</td>
+                <td>Usuários:</td>
+            </tr>
+            <tr>
+                <th scope="row">{{ listausuario[ini][0] }}</th>
+                <td>{{ listausuario[ini][1] }}</td>
+                {{ formulario4.pkcodusuario(hidden=hidden, readonly="readonly", value=listausuario[ini][0])}}
+                <td>{{ formulario4.deletarusuario }} </td>
+            </tr>
+        </table>
+    </form>
+    {% endfor %}
+</body>
+
+</html>
